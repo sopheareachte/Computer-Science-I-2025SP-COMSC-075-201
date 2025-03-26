@@ -21,15 +21,17 @@ public class Correlation {
 	*/
 	public static double[] getDeviations(double[] data) {
 		double total = 0.0;
+		int len = data.length;
 		
-		for (int i = 0; i < data.length; i++) {
+		for (int i = 0; i < len; i++) {
 			total += data[i];
 		}
 		
-		double mean = total / data.length;
-		double[] result = new double[data.length];
+		double mean = total / len;
 		
-		for (int i = 0; i < data.length; i++) {
+		double[] result = new double[len];
+		
+		for (int i = 0; i < len; i++) {
 			result[i] = data[i] - mean;
 		}
 		
@@ -69,7 +71,7 @@ public class Correlation {
 		double xSumOfSquares = sumOfSquares(xDeviations);
 		double ySumOfSquares = sumOfSquares(yDeviations);
 		
-		double denominator = Math.pow(xSumOfSquares, 0.5) * Math.pow(ySumOfSquares, 0.5);
+		double denominator = Math.pow(xSumOfSquares * ySumOfSquares, 0.5);
 		
 		double r = numerator / denominator;
 		
